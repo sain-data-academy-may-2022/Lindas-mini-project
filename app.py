@@ -1,7 +1,8 @@
 import products
+import orders
 
 my_products = ['Pepper up', 'Draught of Peace', 'Amorentia', 'Fatigue Infusion', 'Invisibility potion']
-
+my_orders = []
 
 def main_menu():   
     print('') 
@@ -14,7 +15,7 @@ def main_menu():
 
 def product_menu():   
     print('') 
-    print('1 - Exit')
+    print('1 - Return to main menu')
     print('2 - View products')
     print('3 - Add new product')
     print('4 - Update product')
@@ -25,11 +26,12 @@ def product_menu():
 
 def order_menu():
     print('')
-    print('1 - Exit')
-    print('2 - Order')
-    print('3 - Update order status')
-    print('4 - Update items in the order')
-    print('5 - Delete order')
+    print('1 - Return to main menu')
+    print('2 - Show orders')
+    print('3 - Customer information')
+    print('4 - Update order status')
+    print('5 - Update items in the order')
+    print('6 - Delete order')
 
     choice = input('Please select an option: ')
     return choice
@@ -58,10 +60,10 @@ while True:
             if choice == '1':
                 break
             elif choice == '2':
-                print('my_order')
+                orders.print_order(my_orders)
             elif choice == '3':
-                print('my_order')
+                orders.add_order(my_orders)
             elif choice == '4':
-                print('my_order')
+                orders.order_status(my_orders)
             elif choice == '5':
                 print('my_order')
