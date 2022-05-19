@@ -2,7 +2,11 @@ import products
 import orders
 
 my_products = ['Pepper up', 'Draught of Peace', 'Amorentia', 'Fatigue Infusion', 'Invisibility potion']
-my_orders = []
+my_orders = [   
+    {'name': 'Billy', 'address': '25 Baker street', 'phone': '111119992', 'status': 'PREPARING'},
+    {'name': 'Lisa', 'address': '26 Plam street', 'phone': '676767676', 'status': 'PREPARING'},
+    {'name': 'Richard', 'address': 'Down with surveillance!!!!!!', 'phone': '00000', 'status': 'PREPARING'},
+]
 
 def main_menu():   
     print('') 
@@ -28,7 +32,7 @@ def order_menu():
     print('')
     print('1 - Return to main menu')
     print('2 - Show orders')
-    print('3 - Customer information')
+    print('3 - Add order')
     print('4 - Update order status')
     print('5 - Update items in the order')
     print('6 - Delete order')
@@ -60,10 +64,14 @@ while True:
             if choice == '1':
                 break
             elif choice == '2':
-                orders.print_order(my_orders)
+                orders.print_orders(my_orders)
             elif choice == '3':
                 orders.add_order(my_orders)
             elif choice == '4':
                 orders.order_status(my_orders)
             elif choice == '5':
-                print('my_order')
+                orders.update_order(my_orders)
+            elif choice == '6':
+                orders.remove_order(my_orders)
+               
+   
