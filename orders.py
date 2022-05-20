@@ -1,9 +1,4 @@
-# Print order list
-
-def print_orders(orders):
-    print('')
-    for (o, order) in enumerate(orders, start = 1):
-        print(o, order)
+import utilities
 
 
 # Add order to the orders list
@@ -22,8 +17,7 @@ def add_order(orders):
 # Updating orders status
 
 def order_status(orders):
-    print_orders(orders)
-    order_num = int(input('Please choose and order to be updated: '))
+    order_num = utilities.get_choice(orders)
     print('')
     print('1 - Pending')
     print('2 - Picking')
@@ -44,8 +38,7 @@ def order_status(orders):
 # Updating order details
 
 def update_order(orders):
-    print_orders(orders)
-    order_num = int(input('Please choose and order to be updated: '))
+    order_num = utilities.get_choice(orders)
     car = orders[order_num -1].items()
     for (key,value) in car:
         if key == 'status':
@@ -58,7 +51,6 @@ def update_order(orders):
 # Deleting order
 
 def remove_order(orders):    
-    print_orders(orders)
-    num = int(input('Please select order to be deleted: '))
-    del orders[num -1]
+    order_num = utilities.get_choice(orders)
+    del orders[order_num -1]
 

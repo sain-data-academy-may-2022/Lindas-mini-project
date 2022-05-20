@@ -1,5 +1,6 @@
 import products
 import orders
+import utilities
 
 my_products = ['Pepper up', 'Draught of Peace', 'Amorentia', 'Fatigue Infusion', 'Invisibility potion']
 my_orders = [   
@@ -51,7 +52,7 @@ while True:
             if choice == '1':
                 break
             elif choice == '2':
-                products.print_list(my_products)
+                utilities.print_list(my_products)
             elif choice == '3':
                 products.add_item(my_products)
             elif choice == '4':
@@ -64,7 +65,7 @@ while True:
             if choice == '1':
                 break
             elif choice == '2':
-                orders.print_orders(my_orders)
+                utilities.print_list(my_orders)
             elif choice == '3':
                 orders.add_order(my_orders)
             elif choice == '4':
