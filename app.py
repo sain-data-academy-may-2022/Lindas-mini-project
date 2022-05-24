@@ -1,9 +1,11 @@
 import products
 import orders
+import couriers
 import utilities
 
 
 my_products = ['Pepper up', 'Draught of Peace', 'Amorentia', 'Fatigue Infusion', 'Invisibility potion']
+my_couriers = ['Gil', 'Ansis', 'Liene', 'Jasmina']
 my_orders = [   
     {'name': 'Billy', 'address': '25 Baker street', 'phone': '111119992', 'status': 'PREPARING'},
     {'name': 'Lisa', 'address': '26 Plam street', 'phone': '676767676', 'status': 'PREPARING'},
@@ -12,27 +14,26 @@ my_orders = [
 
 
 def main_menu():   
-    choice = utilities.get_choice([
+    return utilities.get_choice([
         'Exit program',
         'View products',
         'View orders',
+        'Couriers',
     ])
-    return choice
-
+    
 
 def product_menu():   
-    choice = utilities.get_choice([
+    return utilities.get_choice([
         'Return to main menu',
         'View products',
         'Add new product',
         'Update product',
         'Delete product',
     ])
-    return choice
-  
+ 
 
 def order_menu():
-    choice =utilities.get_choice([
+    return utilities.get_choice([
         'Return to main menu',
         'Show orders',
         'Add order',
@@ -40,7 +41,16 @@ def order_menu():
         'Update items in the order',
         'Delete order',
     ])
-    return choice
+
+
+def courier_menu():
+    return utilities.get_choice([
+        'Return to main menu',
+        'List of couriers',
+        'Add courier',
+        'Update courier',
+        'Delete courier',
+    ])
 
 
 while True:
@@ -75,5 +85,17 @@ while True:
                 orders.update_order(my_orders)
             elif choice == 5:
                 orders.remove_order(my_orders)
-               
-   
+    elif choice == 3:
+        while True:
+            choice = courier_menu()
+            if choice ==0:
+                break
+            elif choice == 1:
+                utilities.print_list(my_couriers)
+            elif choice == 2:
+                couriers.add_courier(my_couriers)
+            elif choice == 3:
+                couriers.update_courier(my_couriers)
+            elif choice == 4:
+                couriers.remove_courier(my_couriers)
+                
