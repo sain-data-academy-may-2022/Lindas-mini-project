@@ -8,6 +8,13 @@ def import_json(filename) :
         return json.load(file)
 
 
+# overrides the json file with new items
+
+def write_json(filename, list):
+    with open(filename, 'w') as f:
+        json.dump(list, f)
+        
+
 # Prints the list of items with indexes
 
 def print_list(items):
@@ -29,11 +36,3 @@ def get_choice(list):
                 return which_item
         except ValueError:
             print('Please write a number')
-
-
-#  Deleting item from a list
-
-def remove_list_item(list):
-    num = get_choice(list)
-    del list[num]
-    

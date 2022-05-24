@@ -3,7 +3,6 @@ import orders
 import couriers
 import utilities
 
-
 my_products = utilities.import_json('products.json')   
 my_orders = utilities.import_json('orders.json')
 my_couriers = utilities.import_json('couriers.json')
@@ -11,9 +10,9 @@ my_couriers = utilities.import_json('couriers.json')
 
 def main_menu():  
     return utilities.get_choice([
-        'Leave this place',
-        'View products',
-        'View orders',
+        'Leave this place!',
+        'List of goodies',
+        'You want some?',
         'Couriers',
     ])
     
@@ -65,7 +64,7 @@ while True:
             elif choice == 3:
                 products.update_item(my_products)
             elif choice == 4:
-                utilities.remove_list_item(my_products)
+                products.delete_product(my_products)
     elif choice == 2:
         while True:
             choice = order_menu()
@@ -80,7 +79,7 @@ while True:
             elif choice == 4:
                 orders.update_order(my_orders)
             elif choice == 5:
-                utilities.remove_list_item(my_orders)
+                orders.delete_order(my_orders)
     elif choice == 3:
         while True:
             choice = courier_menu()
@@ -93,5 +92,5 @@ while True:
             elif choice == 3:
                 couriers.update_courier(my_couriers)
             elif choice == 4:
-                utilities.remove_list_item(my_couriers)
+                couriers.delete_courier(my_couriers)
                 

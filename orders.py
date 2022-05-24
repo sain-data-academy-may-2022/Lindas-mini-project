@@ -46,4 +46,12 @@ def update_order(orders):
         new_value = input(f'Please write the new {key}: ')
         if new_value != '':
             orders[order_num][key]=new_value
+            
 
+# Deleting order from a list
+
+def delete_order(list):
+    num = utilities.get_choice(list)
+    del list[num]
+    utilities.write_json('orders.json', list)
+    
