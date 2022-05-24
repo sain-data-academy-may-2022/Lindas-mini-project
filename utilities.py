@@ -1,3 +1,13 @@
+import json
+
+
+# imports from json
+
+def import_json(filename) :
+    with open(filename) as file:
+        return json.load(file)
+
+
 # Prints the list of items with indexes
 
 def print_list(items):

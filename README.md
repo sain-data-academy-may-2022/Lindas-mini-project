@@ -1,6 +1,7 @@
 # sainsburys-mini_project
-This is a pop up cafe that is not staying around for very long. They sell things that are not particurlarly acceptable in modern society!
+This is a pop up potion shop that is not staying around for very long. We sell items that are not really acceptable  or legal in modern society!
 
-It has a menu and a runner. Nothing more to say about concept.
+We are here one day and gone the next! If you want our wares be fast or miss out!
 
+Consume at your own peril, we are not responsible for side effects!
 

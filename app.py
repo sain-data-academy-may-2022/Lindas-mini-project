@@ -4,16 +4,12 @@ import couriers
 import utilities
 
 
-my_products = ['Pepper up', 'Draught of Peace', 'Amorentia', 'Fatigue Infusion', 'Invisibility potion']
-my_couriers = ['Gil', 'Ansis', 'Liene', 'Jasmina']
-my_orders = [   
-    {'name': 'Billy', 'address': '25 Baker street', 'phone': '111119992', 'status': 'PREPARING'},
-    {'name': 'Lisa', 'address': '26 Plam street', 'phone': '676767676', 'status': 'PREPARING'},
-    {'name': 'Richard', 'address': 'Down with surveillance!!!!!!', 'phone': '00000', 'status': 'PREPARING'},
-]
+my_products = utilities.import_json('products.json')   
+my_orders = utilities.import_json('orders.json')
+my_couriers = utilities.import_json('couriers.json')
 
 
-def main_menu():   
+def main_menu():  
     return utilities.get_choice([
         'Leave this place',
         'View products',
