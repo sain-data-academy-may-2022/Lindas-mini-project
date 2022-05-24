@@ -19,3 +19,11 @@ def get_choice(list):
                 return which_item
         except ValueError:
             print('Please write a number')
+
+
+#  Deleting item from a list
+
+def remove_list_item(list):
+    num = get_choice(list)
+    del list[num]
+    

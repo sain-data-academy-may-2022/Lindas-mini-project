@@ -15,7 +15,7 @@ my_orders = [
 
 def main_menu():   
     return utilities.get_choice([
-        'Exit program',
+        'Leave this place',
         'View products',
         'View orders',
         'Couriers',
@@ -24,7 +24,7 @@ def main_menu():
 
 def product_menu():   
     return utilities.get_choice([
-        'Return to main menu',
+        'Pack up to leave',
         'View products',
         'Add new product',
         'Update product',
@@ -34,7 +34,7 @@ def product_menu():
 
 def order_menu():
     return utilities.get_choice([
-        'Return to main menu',
+        'Pack up to leave',
         'Show orders',
         'Add order',
         'Update order status',
@@ -45,7 +45,7 @@ def order_menu():
 
 def courier_menu():
     return utilities.get_choice([
-        'Return to main menu',
+        'Pack up to leave',
         'List of couriers',
         'Add courier',
         'Update courier',
@@ -69,7 +69,7 @@ while True:
             elif choice == 3:
                 products.update_item(my_products)
             elif choice == 4:
-                products.remove_item(my_products)
+                utilities.remove_list_item(my_products)
     elif choice == 2:
         while True:
             choice = order_menu()
@@ -84,7 +84,7 @@ while True:
             elif choice == 4:
                 orders.update_order(my_orders)
             elif choice == 5:
-                orders.remove_order(my_orders)
+                utilities.remove_list_item(my_orders)
     elif choice == 3:
         while True:
             choice = courier_menu()
@@ -97,5 +97,5 @@ while True:
             elif choice == 3:
                 couriers.update_courier(my_couriers)
             elif choice == 4:
-                couriers.remove_courier(my_couriers)
+                utilities.remove_list_item(my_couriers)
                 

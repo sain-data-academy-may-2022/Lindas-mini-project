@@ -47,10 +47,3 @@ def update_order(orders):
         if new_value != '':
             orders[order_num][key]=new_value
 
-
-# Deleting order
-
-def remove_order(orders):    
-    order_num = utilities.get_choice(orders)
-    del orders[order_num -1]
-    

@@ -16,9 +16,3 @@ def update_courier(list):
     list[num] = updated_item
 
 
-#  Deleting item from product list
-
-def remove_courier(list):
-    num = utilities.get_choice(list)
-    del list[num]
-    

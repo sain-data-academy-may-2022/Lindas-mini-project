@@ -15,9 +15,3 @@ def update_item(list):
     updated_item = input('Write the new item name: ')
     list[num] = updated_item
         
-
-#  Deleting item from product list
-
-def remove_item(list):
-    num = utilities.get_choice(list)
-    del list[num]
