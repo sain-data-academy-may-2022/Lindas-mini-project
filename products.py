@@ -15,6 +15,7 @@ def update_item(list):
     num = utilities.get_choice(list)
     updated_item = input('Write the new item name: ')
     list[num] = updated_item
+    utilities.write_json('products.json', list)
 
         
 #  Deleting item from a list

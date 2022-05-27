@@ -11,8 +11,8 @@ my_couriers = utilities.import_json('couriers.json')
 def main_menu():  
     return utilities.get_choice([
         'Leave this place!',
-        'List of goodies',
-        'You want some?',
+        'Products',
+        'Orders',
         'Couriers',
     ])
     
@@ -73,7 +73,7 @@ while True:
             elif choice == 1:
                 utilities.print_list(my_orders)
             elif choice == 2:
-                orders.add_order(my_orders)
+                orders.add_order(my_orders, my_couriers)
             elif choice == 3:
                 orders.order_status(my_orders)
             elif choice == 4:

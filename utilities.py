@@ -15,7 +15,7 @@ def import_json(filename):
 
 def write_json(filename, list):
         with open(filename, 'w') as file:
-            json.dump(list, file)   
+            json.dump(list, file, indent = 4)   
     
 
 # Prints the list of items with indexes
@@ -23,7 +23,7 @@ def write_json(filename, list):
 def print_list(items):
     print('')
     if not items:
-        print('No goodies!')
+        print('No Items!')
     else:
         for (i, item) in enumerate(items, start = 1):
             print(i, item)

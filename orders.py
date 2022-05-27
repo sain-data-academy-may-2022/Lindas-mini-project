@@ -3,7 +3,7 @@ import utilities
 
 # Add order to the orders list
     
-def add_order(orders):
+def add_order(orders,couriers):
     print('')
     order = {
         'name': input('Please enter customer name: '),
@@ -11,7 +11,13 @@ def add_order(orders):
         'phone': input('Please enter customer phone number: '),
         'status': 'PENDING',
     }
+
+    courier_num = utilities.get_choice(couriers)
+    courier_name = couriers[courier_num]
+    order['courier'] = courier_name
+
     orders.append(order)
+    utilities.write_json('orders.json', orders)
 
 
 # Updating orders status
@@ -24,15 +30,16 @@ def order_status(orders):
     print('3 - Preparing')
     print('4 - Dispatched')
     print('5 - Delivered')
-    num = utilities.get_choice(orders)
-    statuses = {
-       1: 'PENDING',
-       2: 'PICKING',
-       3: 'PREPARING',
-       4: 'DISPATCHED',
-       5: 'DELIVERED',
-    }
-    orders[order_num]['status'] = statuses[num]
+    statuses = [
+       'PENDING',
+       'PICKING',
+       'PREPARING',
+       'DISPATCHED',
+       'DELIVERED',
+    ]
+    status_num = utilities.get_choice(statuses)
+    orders[order_num]['status'] = statuses[status_num]
+    utilities.write_json('orders.json', orders)
 
 
 # Updating order details
@@ -46,6 +53,7 @@ def update_order(orders):
         new_value = input(f'Please write the new {key}: ')
         if new_value != '':
             orders[order_num][key]=new_value
+    utilities.write_json('orders.json', orders)
             
 
 # Deleting order from a list
