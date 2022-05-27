@@ -3,24 +3,30 @@ import json
 
 # imports from json
 
-def import_json(filename) :
-    with open(filename) as file:
-        return json.load(file)
+def import_json(filename):
+    try:
+        with open(filename) as file:
+            return json.load(file)
+    except:
+        return []
 
 
 # overrides the json file with new items
 
 def write_json(filename, list):
-    with open(filename, 'w') as f:
-        json.dump(list, f)
-        
+        with open(filename, 'w') as file:
+            json.dump(list, file)   
+    
 
 # Prints the list of items with indexes
 
 def print_list(items):
     print('')
-    for (i, item) in enumerate(items, start = 1):
-        print(i, item)
+    if not items:
+        print('No goodies!')
+    else:
+        for (i, item) in enumerate(items, start = 1):
+            print(i, item)
 
 
 # function to check if imput is safe
