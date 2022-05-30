@@ -3,7 +3,7 @@
         "name": "Billy",
         "address": "25 Baker street",
         "phone": "111119992",
-        "status": "PREPARING",
+        "status": "PICKING",
         "courier": "Mr. Twinkletoes"
     },
     {
@@ -12,5 +12,19 @@
         "phone": "00000",
         "status": "DELIVERED",
         "courier": "Jason!"
+    },
+    {
+        "name": "Lisa",
+        "address": "3333 Brambley street",
+        "phone": "33466658",
+        "status": "PENDING",
+        "courier": "Always late"
+    },
+    {
+        "name": "Laila",
+        "address": "55",
+        "phone": "638476587",
+        "status": "PENDING",
+        "courier": "Merlin"
     }
 ]
