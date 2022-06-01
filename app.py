@@ -73,7 +73,7 @@ while True:
             elif choice == 1:
                 utilities.print_list(my_orders)
             elif choice == 2:
-                orders.add_order(my_orders, my_couriers)
+                orders.add_order(my_orders, my_couriers, my_products)
             elif choice == 3:
                 orders.order_status(my_orders)
             elif choice == 4:

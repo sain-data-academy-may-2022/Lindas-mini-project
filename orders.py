@@ -3,7 +3,7 @@ import utilities
 
 # Add order to the orders list
     
-def add_order(orders,couriers, products):
+def add_order(orders, couriers, products):
     print('')
     order = {
         'name': input('Please enter customer name: '),
@@ -13,14 +13,15 @@ def add_order(orders,couriers, products):
         'items': [],
     }
 
-    
-    # product_num = utilities.get_choice(products)
-
-
+    utilities.print_list(products)
+    user_input = input('Please select products to add to the order: ').split(',')
+    items = []
+    for number in user_input:
+        items.append(int(number))
+    order['items'] = items
 
     courier_num = utilities.get_choice(couriers)
-    courier_name = couriers[courier_num]
-    order['courier'] = courier_name
+    order['courier'] = courier_num
 
     orders.append(order)
     utilities.write_json('orders.json', orders)

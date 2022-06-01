@@ -1,11 +1,11 @@
 [
     {
         "product": "Pepper up",
-        "price": 2.50
+        "price": 2.5
     },
     {
         "product": "Draught of Peace",
-        "price": 7.50
+        "price": 7.5
     },
     {
         "product": "Amorentia",
@@ -16,8 +16,8 @@
         "price": 15.25
     },
     {
-        "product":  "Invisibility potion",
-        "price": 43.00
+        "product": "Invisibility potion",
+        "price": 43.0
     },
     {
         "product": "Living Death",
@@ -32,7 +32,7 @@
         "price": 55.6
     },
     {
-        "product": "Timeless terror",
-        "price": 250.01
+        "product": "Timeless lesser Terror",
+        "price": 150.1
     }
 ]
