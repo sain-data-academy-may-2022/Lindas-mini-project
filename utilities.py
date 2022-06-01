@@ -42,3 +42,35 @@ def get_choice(list):
                 return which_item
         except ValueError:
             print('Please write a number')
+
+
+# Checks if input is a positive float
+
+def get_positive_float(message):
+    while True:
+        try:
+            num = float(input(message))
+            if num <= 0:
+                print('Please select a positive number')
+            else:
+                return num
+        except ValueError:
+            print('Please write a number')
+
+
+
+
+
+
+# Checks if input is a positive number
+
+def get_positive_int(message):
+    while True:
+        try:
+            num = int(input(message))
+            if num < 0:
+                print('Please select a positive number')
+            else:
+                return num
+        except ValueError:
+            print('Please write a number')

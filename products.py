@@ -4,8 +4,12 @@ import utilities
 #  Adding new item to the product list
 
 def add_item(list):
-    new_item = input('Please enter new item: ')
-    list.append(new_item)
+    print('')
+    product = {
+        'product': input('Please enter new item: '),
+        'price': utilities.get_positive_float('Please select price for the new item: ')
+    }
+    list.append(product)
     utilities.write_json('products.json', list)
 
 

@@ -3,14 +3,20 @@ import utilities
 
 # Add order to the orders list
     
-def add_order(orders,couriers):
+def add_order(orders,couriers, products):
     print('')
     order = {
         'name': input('Please enter customer name: '),
         'address': input('Please enter customer address: '),
         'phone': input('Please enter customer phone number: '),
         'status': 'PENDING',
+        'items': [],
     }
+
+    
+    # product_num = utilities.get_choice(products)
+
+
 
     courier_num = utilities.get_choice(couriers)
     courier_name = couriers[courier_num]

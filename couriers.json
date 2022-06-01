@@ -1,1 +1,18 @@
-["Always late", "Jason!", "Mr. Twinkletoes", "Merlin"]
+[
+    {
+        "name": "Jason!",
+        "phone": "Lock the door, and wait"
+    },
+    {
+        "name": "Mr. Twinkletoes",
+        "phone": "9090390003990"
+    },
+    {
+        "name": "Always late",
+        "phone": "12345768911"
+    },
+    {
+        "name": "Merlin",
+        "phone": "000000000000"
+    }
+]

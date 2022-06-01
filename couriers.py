@@ -4,8 +4,12 @@ import utilities
 # Adding new courier
 
 def add_courier(couriers):
-    new_item = input('Please enter new courier: ')
-    couriers.append(new_item)
+    print('')
+    courier_list = {
+        'name': input('Please enter new courier: '),
+        'phone': input('Please put in phone number: ')
+    }
+    couriers.append(courier_list)
     utilities.write_json('couriers.json', couriers)
 
 
