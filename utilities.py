@@ -14,8 +14,8 @@ def import_json(filename):
 # overrides the json file with new items
 
 def write_json(filename, list):
-        with open(filename, 'w') as file:
-            json.dump(list, file, indent = 4)   
+    with open(filename, 'w') as file:
+        json.dump(list, file, indent = 4)   
     
 
 # Prints the list of items with indexes
@@ -58,13 +58,9 @@ def get_positive_float(message):
             print('Please write a number')
 
 
+# Checks if input is a positive number or zero
 
-
-
-
-# Checks if input is a positive number
-
-def get_positive_int(message):
+def get_positive_int_or_zero(message):
     while True:
         try:
             num = int(input(message))
