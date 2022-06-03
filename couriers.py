@@ -17,8 +17,12 @@ def add_courier(couriers):
 
 def update_courier(list):
     num = utilities.get_choice(list)
-    updated_item = input('Write the new courier name: ')
-    list[num] = updated_item
+    car = list[num].items()
+    for (key,value) in car:
+        new_value = input(f'Please write the new {key}: ')
+        if new_value != '':
+            list[num][key]=new_value
+
     utilities.write_json('couriers.json', list)
 
 
