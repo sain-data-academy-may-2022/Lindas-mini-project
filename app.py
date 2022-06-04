@@ -77,7 +77,7 @@ while True:
             elif choice == 3:
                 orders.order_status(my_orders)
             elif choice == 4:
-                orders.update_order(my_orders)
+                orders.update_order(my_orders, my_products, my_couriers)
             elif choice == 5:
                 orders.delete_order(my_orders)
     elif choice == 3:
