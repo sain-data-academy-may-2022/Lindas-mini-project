@@ -44,6 +44,17 @@ def get_choice(list):
             print('Please write a number')
 
 
+# Turns choice str into list of ints
+
+def get_int_choices(list, message):
+    print_list(list)
+    user_input = input(message).split(',')
+    items = []
+    for number in user_input:
+        items.append(int(number))
+    return items
+
+
 # Checks if input is a positive float
 
 def get_positive_float(message):

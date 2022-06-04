@@ -13,13 +13,8 @@ def add_order(orders, couriers, products):
         'items': [],
     }
 
-    utilities.print_list(products)
-    user_input = input('Please select products to add to the order: ').split(',')
-    items = []
-    for number in user_input:
-        items.append(int(number))
-    order['items'] = items
-
+    order['items'] = utilities.get_int_choices(products, 'Please select products to add to the order: ')
+        
     courier_num = utilities.get_choice(couriers)
     order['courier'] = courier_num
 
