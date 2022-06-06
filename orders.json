@@ -32,24 +32,20 @@
         "address": "33333 hell",
         "phone": "445673342242435",
         "status": "PENDING",
-        "items": {
-            "product": "Pepper up",
-            "price": 2.5
-        },
-        "courier": {
-            "name": "Mr. Twinkletoes",
-            "phone": "9090390003990"
-        }
+        "items": [
+            3
+        ],
+        "courier": 1
     },
     {
         "name": "Boom",
         "address": "3434ggdfgadgf",
         "phone": "235251",
         "status": "PENDING",
-        "items": {
-            "product": "Draught of Peace",
-            "price": 7.5
-        },
+        "items": [
+            1,
+            5
+        ],
         "courier": 2
     },
     {
@@ -98,6 +94,6 @@
         "items": [
             8
         ],
-        "courier": "2"
+        "courier": 3
     }
 ]
