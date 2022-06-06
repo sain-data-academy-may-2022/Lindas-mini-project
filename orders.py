@@ -3,18 +3,20 @@ import utilities
 
 # Add order to the orders list
     
-def add_order(orders,couriers):
+def add_order(orders, couriers, products):
     print('')
     order = {
         'name': input('Please enter customer name: '),
         'address': input('Please enter customer address: '),
         'phone': input('Please enter customer phone number: '),
         'status': 'PENDING',
+        'items': [],
     }
 
+    order['items'] = utilities.get_int_choices(products, 'Please select products to add to the order separated by commas: ')
+        
     courier_num = utilities.get_choice(couriers)
-    courier_name = couriers[courier_num]
-    order['courier'] = courier_name
+    order['courier'] = courier_num
 
     orders.append(order)
     utilities.write_json('orders.json', orders)
@@ -24,12 +26,6 @@ def add_order(orders,couriers):
 
 def order_status(orders):
     order_num = utilities.get_choice(orders)
-    print('')
-    print('1 - Pending')
-    print('2 - Picking')
-    print('3 - Preparing')
-    print('4 - Dispatched')
-    print('5 - Delivered')
     statuses = [
        'PENDING',
        'PICKING',
@@ -44,15 +40,24 @@ def order_status(orders):
 
 # Updating order details
 
-def update_order(orders):
+def update_order(orders, products, couriers):
     order_num = utilities.get_choice(orders)
     car = orders[order_num].items()
     for (key,value) in car:
         if key == 'status':
             continue
-        new_value = input(f'Please write the new {key}: ')
-        if new_value != '':
-            orders[order_num][key]=new_value
+        elif key == 'items':
+            new_items = utilities.get_int_choices(products, 'Please write updated items: ', True)
+            if len(new_items) != 0:
+                orders[order_num][key] = new_items
+        elif key == 'courier':
+            new_value = utilities.get_choice(couriers, True)
+            if new_value != '':
+                orders[order_num][key]= new_value
+        else:
+            new_value = input(f'Please write the new {key}: ')
+            if new_value != '':
+                orders[order_num][key]= new_value
     utilities.write_json('orders.json', orders)
             
 
