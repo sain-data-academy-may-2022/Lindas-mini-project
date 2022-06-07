@@ -1,0 +1,4 @@
+cov.xml
+.coverage
+.DS_Store
+.vscode
