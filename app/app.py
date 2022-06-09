@@ -1,16 +1,14 @@
 from dbfuncs import ProductManager
+from dbfuncs import CourierManager
 import products
-import product
 import orders
 import couriers
-import courier
 import utilities
 
-my_products = utilities.import_json('products.json')   
 my_orders = utilities.import_json('orders.json')
-my_couriers = utilities.import_json('couriers.json')
 
 product_manager = ProductManager()
+courier_manager = CourierManager()
 
 def main_menu():  
     return utilities.get_choice([
@@ -78,11 +76,11 @@ while True:
             elif choice == 1:
                 utilities.print_list(my_orders)
             elif choice == 2:
-                orders.add_order(my_orders, my_couriers, my_products)
+                orders.add_order(my_orders, courier_manager, product_manager)
             elif choice == 3:
                 orders.order_status(my_orders)
             elif choice == 4:
-                orders.update_order(my_orders, my_products, my_couriers)
+                orders.update_order(my_orders, product_manager, courier_manager)
             elif choice == 5:
                 orders.delete_order(my_orders)
     elif choice == 3:
@@ -91,11 +89,12 @@ while True:
             if choice ==0:
                 break
             elif choice == 1:
-                utilities.print_list(my_couriers)
+                list = courier_manager.get_all()
+                utilities.print_list(list)
             elif choice == 2:
-                couriers.add_courier(my_couriers)
+                couriers.add_courier(courier_manager)
             elif choice == 3:
-                couriers.update_courier(my_couriers)
+                couriers.update_courier(courier_manager)
             elif choice == 4:
-                couriers.delete_courier(my_couriers)
+                couriers.delete_courier(courier_manager)
                 

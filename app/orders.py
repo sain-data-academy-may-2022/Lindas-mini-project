@@ -1,9 +1,10 @@
+from dbfuncs import CourierManager
+from dbfuncs import ProductManager
 import utilities
-
 
 # Add order to the orders list
     
-def add_order(orders, couriers, products):
+def add_order(orders, courier_manager: CourierManager, product_manager: ProductManager):
     print('')
     order = {
         'name': input('Please enter customer name: '),
@@ -12,11 +13,11 @@ def add_order(orders, couriers, products):
         'status': 'PENDING',
         'items': [],
     }
-
+    products = product_manager.get_all()
     order['items'] = utilities.get_int_choices(products, 'Please select products to add to the order separated by commas: ')
         
-    courier_num = utilities.get_choice(couriers)
-    order['courier'] = courier_num
+    couriers = courier_manager.get_all()
+    order['courier'] = utilities.get_choice(couriers)
 
     orders.append(order)
     utilities.write_json('orders.json', orders)
@@ -40,18 +41,20 @@ def order_status(orders):
 
 # Updating order details
 
-def update_order(orders, products, couriers):
+def update_order(orders, product_manager: ProductManager, courier_manager: CourierManager):
     order_num = utilities.get_choice(orders)
     car = orders[order_num].items()
     for (key,value) in car:
         if key == 'status':
             continue
         elif key == 'items':
+            products = product_manager.get_all()
             new_items = utilities.get_int_choices(products, 'Please write updated items: ', True)
             if len(new_items) != 0:
                 orders[order_num][key] = new_items
         elif key == 'courier':
-            new_value = utilities.get_choice(couriers, True)
+            courier = courier_manager.get_all()
+            new_value = utilities.get_choice(courier, True)
             if new_value != '':
                 orders[order_num][key]= new_value
         else:

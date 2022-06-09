@@ -5,7 +5,7 @@ import utilities
 
 #  Adding new item to the product list
 
-def add_item(product_manager):
+def add_item(product_manager: ProductManager):
     print('')
     name = input('Please enter new item: ')
     price = utilities.get_positive_float('Please select price for the new item: ')
@@ -27,7 +27,7 @@ def update_item(product_manager: ProductManager):
         if new_value != '':
             if key == 'price':
                 new_value = float(new_value)
-            product[key]=new_value
+            product[key] = new_value
     product_manager.update(product["ID"], product["Name"], product["Price"])
             
         

@@ -71,9 +71,47 @@ class ProductManager:
         close_connection(connection)
 
 
+# Courier manager that does all DB inputs
 
+class CourierManager:
+    def create(self, name, phone):
+        connection = open_connection()
+        cursor = connection.cursor()
+        sql = "INSERT INTO courier (name, phone) VALUES (%s, %s)"
+        val = (name, phone)
+        cursor.execute(sql, val)
+        connection.commit()
+        cursor.close()
+        close_connection(connection)
 
+    def get_all(self):
+        connection = open_connection()
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
+        cursor.execute('SELECT * FROM courier')
+        rows = cursor.fetchall()
+        cursor.close()
+        close_connection(connection)
+        return rows
 
+    def update(self, id, name, phone):
+        connection = open_connection()
+        cursor = connection.cursor()
+        sql = "UPDATE courier SET name = %s, phone = %s WHERE id = %s"
+        val = (name, phone, id)
+        cursor.execute(sql, val)
+        connection.commit()
+        cursor.close()
+        close_connection(connection)
+    
+    def delete(self, id):
+        connection = open_connection()
+        cursor = connection.cursor()
+        sql = "DELETE FROM courier WHERE id = %s"
+        val = (id)
+        cursor.execute(sql, val)
+        connection.commit()
+        cursor.close()
+        close_connection(connection)
 
 
 

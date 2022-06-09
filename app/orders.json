@@ -42,11 +42,9 @@
         "status": "PENDING",
         "items": [
             1,
-            2,
-            3,
-            4
+            2
         ],
-        "courier": 2
+        "courier": 3
     },
     {
         "name": "Bobby",
