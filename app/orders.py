@@ -25,15 +25,8 @@ def add_order(orders, courier_manager: CourierManager, product_manager: ProductM
 
 # Updating orders status
 
-def order_status(orders):
+def order_status(orders, statuses):
     order_num = utilities.get_choice(orders)
-    statuses = [
-       'PENDING',
-       'PICKING',
-       'PREPARING',
-       'DISPATCHED',
-       'DELIVERED',
-    ]
     status_num = utilities.get_choice(statuses)
     orders[order_num]['status'] = statuses[status_num]
     utilities.write_json('orders.json', orders)
@@ -70,4 +63,27 @@ def delete_order(list):
     num = utilities.get_choice(list)
     del list[num]
     utilities.write_json('orders.json', list)
+
+
+# Sorting orders by delivery statuses
+
+def sort_order_by_status(orders, statuses):
+    filtered = []
+    status_num = utilities.get_choice(statuses)
+    status = statuses[status_num]
+    for order in orders:
+        if order["status"] == status:
+            filtered.append(order)
+    utilities.print_list(filtered)
     
+
+# Sorting orders by courier
+
+def sort_order_by_courier(orders, courier_manager):
+    filtered = []
+    couriers = courier_manager.get_all()
+    courier_num = utilities.get_choice(couriers)
+    for order in orders:
+        if order["courier"] == courier_num:
+            filtered.append(order)
+    utilities.print_list(filtered)

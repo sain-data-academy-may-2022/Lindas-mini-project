@@ -10,6 +10,14 @@ my_orders = utilities.import_json('orders.json')
 product_manager = ProductManager()
 courier_manager = CourierManager()
 
+statuses = [
+    'PENDING',
+    'PICKING',
+    'PREPARING',
+    'DISPATCHED',
+    'DELIVERED',
+]
+
 def main_menu():  
     return utilities.get_choice([
         'Leave this place!',
@@ -37,6 +45,8 @@ def order_menu():
         'Update order status',
         'Update items in the order',
         'Delete order',
+        'Show orders by status',
+        'Show orders by courier',
     ])
 
 
@@ -78,11 +88,15 @@ while True:
             elif choice == 2:
                 orders.add_order(my_orders, courier_manager, product_manager)
             elif choice == 3:
-                orders.order_status(my_orders)
+                orders.order_status(my_orders, statuses)
             elif choice == 4:
                 orders.update_order(my_orders, product_manager, courier_manager)
             elif choice == 5:
                 orders.delete_order(my_orders)
+            elif choice == 6:
+                orders.sort_order_by_status(my_orders, statuses)
+            elif choice == 7:
+                orders.sort_order_by_courier(my_orders, courier_manager)
     elif choice == 3:
         while True:
             choice = courier_menu()
