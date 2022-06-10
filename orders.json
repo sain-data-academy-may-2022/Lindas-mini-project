@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Laila",
+        "address": "45678 Grr street",
+        "phone": "748957231",
+        "status": "PENDING",
+        "items": [
+            3
+        ],
+        "courier": 2
+    },
+    {
+        "name": "Bill",
+        "address": "556 Row Street",
+        "phone": "0973532521",
+        "status": "PENDING",
+        "items": [
+            1,
+            3
+        ],
+        "courier": 1
+    },
+    {
+        "name": "James",
+        "address": "Neverland!",
+        "phone": "I have a ship!",
+        "status": "DISPATCHED",
+        "items": [
+            1,
+            3,
+            2,
+            0
+        ],
+        "courier": 2
+    }
+]

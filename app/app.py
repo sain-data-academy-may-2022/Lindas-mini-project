@@ -1,12 +1,22 @@
+from dbfuncs import ProductManager
+from dbfuncs import CourierManager
 import products
 import orders
 import couriers
 import utilities
 
-my_products = utilities.import_json('products.json')   
 my_orders = utilities.import_json('orders.json')
-my_couriers = utilities.import_json('couriers.json')
 
+product_manager = ProductManager()
+courier_manager = CourierManager()
+
+statuses = [
+    'PENDING',
+    'PICKING',
+    'PREPARING',
+    'DISPATCHED',
+    'DELIVERED',
+]
 
 def main_menu():  
     return utilities.get_choice([
@@ -35,6 +45,8 @@ def order_menu():
         'Update order status',
         'Update items in the order',
         'Delete order',
+        'Show orders by status',
+        'Show orders by courier',
     ])
 
 
@@ -58,13 +70,14 @@ while True:
             if choice == 0:
                 break
             elif choice == 1:
-                utilities.print_list(my_products)
+                list = product_manager.get_all()
+                utilities.print_list(list)
             elif choice == 2:
-                products.add_item(my_products)
+                products.add_item(product_manager)
             elif choice == 3:
-                products.update_item(my_products)
+                products.update_item(product_manager)
             elif choice == 4:
-                products.delete_product(my_products)
+                products.delete_product(product_manager)
     elif choice == 2:
         while True:
             choice = order_menu()
@@ -73,24 +86,29 @@ while True:
             elif choice == 1:
                 utilities.print_list(my_orders)
             elif choice == 2:
-                orders.add_order(my_orders, my_couriers, my_products)
+                orders.add_order(my_orders, courier_manager, product_manager)
             elif choice == 3:
-                orders.order_status(my_orders)
+                orders.order_status(my_orders, statuses)
             elif choice == 4:
-                orders.update_order(my_orders, my_products, my_couriers)
+                orders.update_order(my_orders, product_manager, courier_manager)
             elif choice == 5:
                 orders.delete_order(my_orders)
+            elif choice == 6:
+                orders.sort_order_by_status(my_orders, statuses)
+            elif choice == 7:
+                orders.sort_order_by_courier(my_orders, courier_manager)
     elif choice == 3:
         while True:
             choice = courier_menu()
             if choice ==0:
                 break
             elif choice == 1:
-                utilities.print_list(my_couriers)
+                list = courier_manager.get_all()
+                utilities.print_list(list)
             elif choice == 2:
-                couriers.add_courier(my_couriers)
+                couriers.add_courier(courier_manager)
             elif choice == 3:
-                couriers.update_courier(my_couriers)
+                couriers.update_courier(courier_manager)
             elif choice == 4:
-                couriers.delete_courier(my_couriers)
+                couriers.delete_courier(courier_manager)
                 
