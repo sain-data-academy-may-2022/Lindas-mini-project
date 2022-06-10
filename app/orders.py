@@ -79,7 +79,7 @@ def sort_order_by_status(orders, statuses):
 
 # Sorting orders by courier
 
-def sort_order_by_courier(orders, courier_manager):
+def sort_order_by_courier(orders, courier_manager: CourierManager):
     filtered = []
     couriers = courier_manager.get_all()
     courier_num = utilities.get_choice(couriers)

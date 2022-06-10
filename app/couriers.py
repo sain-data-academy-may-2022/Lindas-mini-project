@@ -6,7 +6,7 @@ import utilities
 
 def add_courier(courier_manager: CourierManager):
     print('')
-    name = input('Please enter new courier: '),
+    name = input('Please enter new courier: ')
     phone =  input('Please put in phone number: ')
     courier_manager.create(name, phone)
 
