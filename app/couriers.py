@@ -7,6 +7,10 @@ import utilities
 def add_courier(courier_manager: CourierManager):
     print('')
     name = input('Please enter new courier: ')
+    if name == '':
+        print('No new courier inputed!')
+        return
+
     phone =  input('Please put in phone number: ')
     courier_manager.create(name, phone)
 
@@ -32,5 +36,10 @@ def update_courier(courier_manager: CourierManager):
 def delete_courier(courier_manager: CourierManager):
     list = courier_manager.get_all()
     num = utilities.get_choice(list)
+    if num =='':
+        print('Action canceled!')
+        return
+
     id = list[num]["ID"]
     courier_manager.delete(id)
+    print('Courier deleted!')

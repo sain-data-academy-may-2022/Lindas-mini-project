@@ -20,7 +20,7 @@ statuses = [
 
 def main_menu():  
     return utilities.get_choice([
-        'Leave this place!',
+        'Exit',
         'Products',
         'Orders',
         'Couriers',
@@ -29,7 +29,7 @@ def main_menu():
 
 def product_menu():   
     return utilities.get_choice([
-        'Pack up to leave',
+        'Go back',
         'View products',
         'Add new product',
         'Update product',
@@ -39,7 +39,7 @@ def product_menu():
 
 def order_menu():
     return utilities.get_choice([
-        'Pack up to leave',
+        'Go back',
         'Show orders',
         'Add order',
         'Update order status',
@@ -52,7 +52,7 @@ def order_menu():
 
 def courier_menu():
     return utilities.get_choice([
-        'Pack up to leave',
+        'Go back',
         'List of couriers',
         'Add courier',
         'Update courier',

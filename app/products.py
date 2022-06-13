@@ -8,6 +8,10 @@ import utilities
 def add_item(product_manager: ProductManager):
     print('')
     name = input('Please enter new item: ')
+    if name =='':
+        print('No new item inputed!')
+        return
+        
     price = utilities.get_positive_float('Please select price for the new item: ')
     product_manager.create(name, price)
 
@@ -35,8 +39,13 @@ def update_item(product_manager: ProductManager):
 
 def delete_product(product_manager: ProductManager):
     list = product_manager.get_all()
-    num = utilities.get_choice(list)
+    num = utilities.get_choice(list, True)
+    if num  == '':
+        print('Action canceled!')
+        return 
+
     id = list[num]['ID']
     product_manager.delete(id)
+    print('Product deleted!')
     
     

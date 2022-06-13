@@ -97,9 +97,10 @@ def get_int_choices(list, message, allow_blank = False):
 def get_positive_float(message):
     while True:
         try:
-            num = float(input(message))
+            num = float(input(message)) 
             if num <= 0:
                 print('Please select a positive number')
+            
             else:
                 return num
         except ValueError:

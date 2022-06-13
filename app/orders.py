@@ -6,8 +6,13 @@ import utilities
     
 def add_order(orders, courier_manager: CourierManager, product_manager: ProductManager):
     print('')
+    name = input('Please enter customer name: ')
+    if name == '':
+        print('No order inputted!')
+        return
+
     order = {
-        'name': input('Please enter customer name: '),
+        'name': name,
         'address': input('Please enter customer address: '),
         'phone': input('Please enter customer phone number: '),
         'status': 'PENDING',
@@ -61,8 +66,13 @@ def update_order(orders, product_manager: ProductManager, courier_manager: Couri
 
 def delete_order(list):
     num = utilities.get_choice(list)
+    if num == '':
+        print('Action canceled!')
+        return
+
     del list[num]
     utilities.write_json('orders.json', list)
+    print('Order deleted!')
 
 
 # Sorting orders by delivery statuses
