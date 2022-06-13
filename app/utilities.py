@@ -1,4 +1,5 @@
 import json
+from prettytable import PrettyTable
 
 
 # imports from json
@@ -20,13 +21,29 @@ def write_json(filename, list):
 
 # Prints the list of items with indexes
 
-def print_list(items):
+def print_list(rows):
     print('')
-    if not items:
+    if bool(rows) == False:
         print('No Items!')
+        return
+    
+    first = rows[0]
+
+    def get_rid_of_id(d):
+        without_id = d.copy()
+        if 'ID' in without_id:
+            del without_id['ID']
+        return without_id
+
+    if type(first) is dict:
+        x = PrettyTable()
+        x.field_names = ['Num'] + list(get_rid_of_id(first).keys())
+        for (i, row) in enumerate(rows, start = 1):
+            x.add_row([i] + list(get_rid_of_id(row).values()))
+        print(x)
     else:
-        for (i, item) in enumerate(items, start = 1):
-            print(i, item)
+        for (i, row) in enumerate(rows, start = 1):
+            print(f'[{i}] - {row}')
 
 
 # function to check if imput is safe

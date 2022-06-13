@@ -17,8 +17,8 @@ def test_print_list_with_items(mock_print: Mock):
     utilities.print_list(['banana', 'lemon'])
     mock_print.assert_has_calls([
         call(''), 
-        call(1, 'banana'),
-        call(2, 'lemon')
+        call('[1] - banana'),
+        call('[2] - lemon')
     ])
 
 
@@ -28,6 +28,17 @@ def test_print_list_with_items(mock_print: Mock):
 def test_get_choice(mock_input: Mock):
     value = utilities.get_choice(['banana', 'apple', 'cherry'])
     assert value == 2
+
+@patch('builtins.input', side_effect = [''])
+def test_get_choice_with_blank(mock_input: Mock):
+    # Assemble
+    my_list = ['banana', 'apple', 'cherry']
+    allow_blank = True
+    expected = ''
+    # Act
+    value = utilities.get_choice(my_list, allow_blank)
+    # Assert
+    assert value == expected
 
 @patch('utilities.print_list')
 @patch('builtins.input', side_effect = ['3'])
