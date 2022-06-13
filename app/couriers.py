@@ -8,7 +8,7 @@ def add_courier(courier_manager: CourierManager):
     print('')
     name = input('Please enter new courier: ')
     if name == '':
-        print('No new courier inputed!')
+        print('Add cancelled!')
         return
 
     phone =  input('Please put in phone number: ')
@@ -19,7 +19,11 @@ def add_courier(courier_manager: CourierManager):
 
 def update_courier(courier_manager: CourierManager):
     couriers = courier_manager.get_all()
-    courier_num = utilities.get_choice(couriers)
+    courier_num = utilities.get_choice(couriers, True)
+    if courier_num == '':
+        print('Update cancelled!')
+        return 
+
     courier = couriers[courier_num]
 
     car = courier.items()
@@ -36,8 +40,8 @@ def update_courier(courier_manager: CourierManager):
 def delete_courier(courier_manager: CourierManager):
     list = courier_manager.get_all()
     num = utilities.get_choice(list)
-    if num =='':
-        print('Action canceled!')
+    if num == '':
+        print('Delete canceled!')
         return
 
     id = list[num]["ID"]

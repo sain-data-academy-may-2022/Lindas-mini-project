@@ -1,5 +1,6 @@
 import json
 from prettytable import PrettyTable
+import os
 
 
 # imports from json
@@ -119,3 +120,7 @@ def get_positive_int_or_zero(message):
                 return num
         except ValueError:
             print('Please write a number')
+
+
+def clear_screen():
+    os.system('clear')

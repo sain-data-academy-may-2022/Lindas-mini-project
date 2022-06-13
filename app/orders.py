@@ -8,7 +8,7 @@ def add_order(orders, courier_manager: CourierManager, product_manager: ProductM
     print('')
     name = input('Please enter customer name: ')
     if name == '':
-        print('No order inputted!')
+        print('Add cancelled!')
         return
 
     order = {
@@ -31,7 +31,11 @@ def add_order(orders, courier_manager: CourierManager, product_manager: ProductM
 # Updating orders status
 
 def order_status(orders, statuses):
-    order_num = utilities.get_choice(orders)
+    order_num = utilities.get_choice(orders, True)
+    if order_num == '':
+        print('Update cancelled!')
+        return
+
     status_num = utilities.get_choice(statuses)
     orders[order_num]['status'] = statuses[status_num]
     utilities.write_json('orders.json', orders)
@@ -40,7 +44,11 @@ def order_status(orders, statuses):
 # Updating order details
 
 def update_order(orders, product_manager: ProductManager, courier_manager: CourierManager):
-    order_num = utilities.get_choice(orders)
+    order_num = utilities.get_choice(orders, True)
+    if order_num == '':
+        print('Update cancelled!')
+        return
+
     car = orders[order_num].items()
     for (key,value) in car:
         if key == 'status':
@@ -65,9 +73,9 @@ def update_order(orders, product_manager: ProductManager, courier_manager: Couri
 # Deleting order from a list
 
 def delete_order(list):
-    num = utilities.get_choice(list)
+    num = utilities.get_choice(list, True)
     if num == '':
-        print('Action canceled!')
+        print('Delete cancelled!')
         return
 
     del list[num]
@@ -79,7 +87,11 @@ def delete_order(list):
 
 def sort_order_by_status(orders, statuses):
     filtered = []
-    status_num = utilities.get_choice(statuses)
+    status_num = utilities.get_choice(statuses, True)
+    if status_num == '':
+        print('Sorting cancelled!')
+        return
+
     status = statuses[status_num]
     for order in orders:
         if order["status"] == status:
@@ -92,7 +104,11 @@ def sort_order_by_status(orders, statuses):
 def sort_order_by_courier(orders, courier_manager: CourierManager):
     filtered = []
     couriers = courier_manager.get_all()
-    courier_num = utilities.get_choice(couriers)
+    courier_num = utilities.get_choice(couriers, True)
+    if courier_num == '':
+        print('Sorting cancelled!')
+        return
+
     for order in orders:
         if order["courier"] == courier_num:
             filtered.append(order)

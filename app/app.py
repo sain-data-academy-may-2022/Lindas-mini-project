@@ -59,12 +59,13 @@ def courier_menu():
         'Delete courier',
     ])
 
-
+utilities.clear_screen()
 while True:
     choice = main_menu()
     if choice == 0:
         break
     elif choice == 1:
+        utilities.clear_screen()
         while True:
             choice = product_menu()
             if choice == 0:
@@ -79,6 +80,7 @@ while True:
             elif choice == 4:
                 products.delete_product(product_manager)
     elif choice == 2:
+        utilities.clear_screen()
         while True:
             choice = order_menu()
             if choice == 0:
@@ -98,6 +100,7 @@ while True:
             elif choice == 7:
                 orders.sort_order_by_courier(my_orders, courier_manager)
     elif choice == 3:
+        utilities.clear_screen()
         while True:
             choice = courier_menu()
             if choice ==0:
