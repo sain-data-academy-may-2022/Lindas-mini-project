@@ -31,11 +31,11 @@ def close_connection(connection):
 # Product manager that does all DB inputs
 
 class ProductManager:
-    def create(self, name, price):
+    def create(self, name, price, quantity):
         connection = open_connection()
         cursor = connection.cursor()
-        sql = "INSERT INTO product (name, price) VALUES (%s, %s)"
-        val = (name, price)
+        sql = "INSERT INTO product (name, price, quantity) VALUES (%s, %s, %s)"
+        val = (name, price, quantity)
         cursor.execute(sql, val)
         connection.commit()
         cursor.close()
@@ -50,11 +50,11 @@ class ProductManager:
         close_connection(connection)
         return rows
 
-    def update(self, id, name, price):
+    def update(self, id, name, price, quantity):
         connection = open_connection()
         cursor = connection.cursor()
-        sql = "UPDATE product SET name = %s, price = %s WHERE id = %s"
-        val = (name, price, id)
+        sql = "UPDATE product SET name = %s, price = %s, quantity = %s WHERE id = %s"
+        val = (name, price, quantity, id)
         cursor.execute(sql, val)
         connection.commit()
         cursor.close()
@@ -114,19 +114,3 @@ class CourierManager:
         close_connection(connection)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# # Closes the cursor so will be unusable from this point 
-# cursor.close()
-
-# connection.commit()

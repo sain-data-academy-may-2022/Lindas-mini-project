@@ -28,12 +28,12 @@ def update_courier(courier_manager: CourierManager):
 
     car = courier.items()
     for (key,value) in car:
-        if key == "ID":
+        if key == "id":
             continue
         new_value = input(f'Please write the new {key}: ')
         if new_value != '':
             courier[key] = new_value
-    courier_manager.update(courier["ID"], courier["Name"], courier["Phone"])
+    courier_manager.update(courier["id"], courier["name"], courier["phone"])
 
 # Deleting order from a list
 
@@ -44,6 +44,6 @@ def delete_courier(courier_manager: CourierManager):
         print('Delete canceled!')
         return
 
-    id = list[num]["ID"]
+    id = list[num]["id"]
     courier_manager.delete(id)
     print('Courier deleted!')

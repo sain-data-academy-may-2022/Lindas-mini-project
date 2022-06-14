@@ -59,8 +59,9 @@ def courier_menu():
         'Delete courier',
     ])
 
-utilities.clear_screen()
+
 while True:
+    utilities.clear_screen()
     choice = main_menu()
     if choice == 0:
         break

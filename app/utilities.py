@@ -32,8 +32,8 @@ def print_list(rows):
 
     def get_rid_of_id(d):
         without_id = d.copy()
-        if 'ID' in without_id:
-            del without_id['ID']
+        if 'id' in without_id:
+            del without_id['id']
         return without_id
 
     if type(first) is dict:

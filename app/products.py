@@ -13,7 +13,8 @@ def add_item(product_manager: ProductManager):
         return
 
     price = utilities.get_positive_float('Please select price for the new item: ')
-    product_manager.create(name, price)
+    quantity = input('Please select the amount of items we have: ')
+    product_manager.create(name, price, quantity)
 
 
 #  Updating the item from product list
@@ -27,14 +28,14 @@ def update_item(product_manager: ProductManager):
 
     product = products[product_num]
     for (key,value) in product.items():
-        if key == "ID":
+        if key == "id":
             continue
         new_value = input(f'Please write the new {key}: ')
         if new_value != '':
             if key == 'price':
                 new_value = float(new_value)
             product[key] = new_value
-    product_manager.update(product["ID"], product["Name"], product["Price"])
+    product_manager.update(product["id"], product["name"], product["price"], product["quantity"])
             
         
 #  Deleting item from a list
@@ -46,7 +47,7 @@ def delete_product(product_manager: ProductManager):
         print('Delete cancelled!')
         return 
 
-    id = list[num]['ID']
+    id = list[num]['id']
     product_manager.delete(id)
     print('Product deleted!')
     
