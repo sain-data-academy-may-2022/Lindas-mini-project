@@ -39,7 +39,7 @@ def update_courier(courier_manager: CourierManager):
 
 def delete_courier(courier_manager: CourierManager):
     list = courier_manager.get_all()
-    num = utilities.get_choice(list)
+    num = utilities.get_choice(list, True)
     if num == '':
         print('Delete canceled!')
         return

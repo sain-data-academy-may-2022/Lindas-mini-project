@@ -1,7 +1,7 @@
 CREATE TABLE `courier` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `phone` int NOT NULL,
+  `phone` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
