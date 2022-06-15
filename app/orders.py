@@ -1,31 +1,35 @@
+from dbfuncs import OrderManager
 from dbfuncs import CourierManager
 from dbfuncs import ProductManager
 import utilities
 
 # Add order to the orders list
     
-def add_order(orders, courier_manager: CourierManager, product_manager: ProductManager):
+def add_order(courier_manager: CourierManager, product_manager: ProductManager, order_manager:OrderManager):
     print('')
     name = input('Please enter customer name: ')
     if name == '':
         print('Add cancelled!')
         return
 
-    order = {
-        'name': name,
-        'address': input('Please enter customer address: '),
-        'phone': input('Please enter customer phone number: '),
-        'status': 'PENDING',
-        'items': [],
-    }
+    address = input('Please enter customer address: ')
+    phone = input('Please enter customer phone number: ')
+    status = 'PENDING'
+    
     products = product_manager.get_all()
-    order['items'] = utilities.get_int_choices(products, 'Please select products to add to the order separated by commas: ')
+    product_indexes = utilities.get_int_choices(products, 'Please select products to add to the order separated by commas: ')
+    product_ids = []
+    for product_index in product_indexes:
+        product_id = products[product_index]['id']
+        product_ids.append(product_id)
+
         
     couriers = courier_manager.get_all()
-    order['courier'] = utilities.get_choice(couriers)
+    courier_idx = utilities.get_choice(couriers)
+    courier_id = couriers[courier_idx]['id']
 
-    orders.append(order)
-    utilities.write_json('orders.json', orders)
+    order_manager.create(name, address, phone, status, product_ids, courier_id)
+
 
 
 # Updating orders status
