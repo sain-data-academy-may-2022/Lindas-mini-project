@@ -73,8 +73,7 @@ def menu(statuses, courier_manager, product_manager, order_manager):
                 if choice == 0:
                     break
                 elif choice == 1:
-                    list = order_manager.get_all()
-                    utilities.print_list(list)
+                    orders.view_orders(order_manager)
                 elif choice == 2:
                     orders.add_order(courier_manager, product_manager, order_manager)
                 elif choice == 3:

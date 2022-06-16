@@ -1,7 +1,18 @@
+from typing import List
 from dbfuncs import OrderManager
 from dbfuncs import CourierManager
 from dbfuncs import ProductManager
 import utilities
+
+def view_orders(order_manager: OrderManager):
+    orders = order_manager.get_all()
+    print_orders(orders)
+
+
+def print_orders(orders: List):
+    orders_without_ids = utilities.list_of_dicts_without(orders, ['courier_id', 'customer_id'])
+    utilities.print_list(orders_without_ids)
+
 
 # Add order to the orders list
     
@@ -36,7 +47,7 @@ def add_order(courier_manager: CourierManager, product_manager: ProductManager, 
 
 def order_status(order_manager: OrderManager, statuses):
     orders = order_manager.get_all()
-    order_index = utilities.get_choice(orders, True)
+    order_index = get_order_choice(orders)
     if order_index == '':
         print('Update cancelled!')
         return
@@ -49,7 +60,7 @@ def order_status(order_manager: OrderManager, statuses):
 
 def update_order(order_manager: OrderManager, product_manager: ProductManager, courier_manager: CourierManager):
     orders = order_manager.get_all()
-    order_index = utilities.get_choice(orders, True)
+    order_index = get_order_choice(orders)
     if order_index == '':
         print('Update cancelled!')
         return
@@ -91,7 +102,7 @@ def update_order(order_manager: OrderManager, product_manager: ProductManager, c
 
 def delete_order(order_manager: OrderManager):
     orders = order_manager.get_all()
-    index = utilities.get_choice(orders, True)
+    index = get_order_choice(orders)
     if index == '':
         print('Delete cancelled!')
         return
@@ -112,7 +123,7 @@ def sort_order_by_status(order_manager: OrderManager, statuses):
 
     status = statuses[status_index]
     orders = order_manager.view_orders_by_status(status)
-    utilities.print_list(orders)
+    print_orders(orders)
     
 
 # Sorting orders by courier
@@ -126,4 +137,9 @@ def sort_order_by_courier(order_manager: OrderManager, courier_manager: CourierM
 
     courier_id = couriers[courier_num]['id']
     orders = order_manager.view_orders_by_courier(courier_id)
-    utilities.print_list(orders)
+    print_orders(orders)
+
+
+def get_order_choice(orders: List):
+    orders_without_ids = utilities.list_of_dicts_without(orders, ['courier_id', 'customer_id'])
+    return utilities.get_choice(orders_without_ids, True)

@@ -1,3 +1,4 @@
+from typing import Dict, List
 from prettytable import PrettyTable
 import os
 
@@ -117,3 +118,19 @@ def get_positive_int_or_zero(message):
 
 def clear_screen():
     os.system('clear')
+
+
+def dict_without(dict: Dict, without_keys: List):
+    new_dict = {}
+    for (key, value) in dict.items():
+        if key not in without_keys:
+            new_dict[key] = value
+    return new_dict
+
+
+def list_of_dicts_without(rows: List, without_keys: List):
+    new_list = []
+    for row in rows:
+        new_dict = dict_without(row, without_keys)
+        new_list.append(new_dict)
+    return new_list

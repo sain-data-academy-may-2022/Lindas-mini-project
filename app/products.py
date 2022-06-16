@@ -1,3 +1,4 @@
+from typing import List
 from dbfuncs import ProductManager
 import utilities
 
@@ -50,5 +51,3 @@ def delete_product(product_manager: ProductManager):
     id = list[num]['id']
     product_manager.delete(id)
     print('Product deleted!')
-    
-    
