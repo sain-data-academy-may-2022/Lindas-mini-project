@@ -29,7 +29,7 @@ def order_menu():
         'Show orders',
         'Add order',
         'Update order status',
-        'Update items in the order',
+        'Update order details',
         'Delete order',
         'Show orders by status',
         'Show orders by courier',
@@ -45,7 +45,7 @@ def courier_menu():
         'Delete courier',
     ])
 
-def menu(statuses, courier_manager, product_manager, order_manager, my_orders):
+def menu(statuses, courier_manager, product_manager, order_manager):
     while True:
         utilities.clear_screen()
         choice = main_menu()
@@ -73,19 +73,20 @@ def menu(statuses, courier_manager, product_manager, order_manager, my_orders):
                 if choice == 0:
                     break
                 elif choice == 1:
-                    utilities.print_list(my_orders)
+                    list = order_manager.get_all()
+                    utilities.print_list(list)
                 elif choice == 2:
                     orders.add_order(courier_manager, product_manager, order_manager)
                 elif choice == 3:
-                    orders.order_status(my_orders, statuses)
+                    orders.order_status(order_manager, statuses)
                 elif choice == 4:
-                    orders.update_order(my_orders, product_manager, courier_manager)
+                    orders.update_order(order_manager, product_manager, courier_manager)
                 elif choice == 5:
-                    orders.delete_order(my_orders)
+                    orders.delete_order(order_manager)
                 elif choice == 6:
-                    orders.sort_order_by_status(my_orders, statuses)
+                    orders.sort_order_by_status(order_manager, statuses)
                 elif choice == 7:
-                    orders.sort_order_by_courier(my_orders, courier_manager)
+                    orders.sort_order_by_courier(order_manager, courier_manager)
         elif choice == 3:
             utilities.clear_screen()
             while True:

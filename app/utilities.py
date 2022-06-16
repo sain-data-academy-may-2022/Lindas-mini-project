@@ -1,24 +1,6 @@
-import json
 from prettytable import PrettyTable
 import os
 
-
-# imports from json
-
-def import_json(filename):
-    try:
-        with open(filename) as file:
-            return json.load(file)
-    except:
-        return []
-
-
-# overrides the json file with new items
-
-def write_json(filename, list):
-    with open(filename, 'w') as file:
-        json.dump(list, file, indent = 4)   
-    
 
 # Prints the list of items with indexes
 
@@ -91,6 +73,17 @@ def get_int_choices(list, message, allow_blank = False):
                 print("Enter valid numbers!")
         except ValueError:
             print('Please enter a number!')
+
+
+# function to check if imput is safe string
+
+def get_string(message):
+    while True:
+        new_string = input(message)
+        if new_string == '':
+            print('Please enter a value')
+        else:
+            return new_string
 
 
 # Checks if input is a positive float
