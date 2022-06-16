@@ -118,3 +118,8 @@ def test_get_positive_int_with_negative_int(mock_input: Mock, mock_print: Mock):
 def test_get_positive_int_with_banana(mock_input: Mock, mock_print: Mock):
     utilities.get_positive_int_or_zero('Give me a number')
     mock_print.assert_called_once_with('Please write a number')
+
+def test_dict_without():
+    input = {'wib': 1, 'rar': 'Woo', 'Three': 'Yep'}
+    actual = utilities.dict_without(input, ['rar', 'blah'])
+    assert actual == {'wib': 1, 'Three': 'Yep'}

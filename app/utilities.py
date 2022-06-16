@@ -1,23 +1,7 @@
-import json
+from typing import Dict, List
 from prettytable import PrettyTable
+import os
 
-
-# imports from json
-
-def import_json(filename):
-    try:
-        with open(filename) as file:
-            return json.load(file)
-    except:
-        return []
-
-
-# overrides the json file with new items
-
-def write_json(filename, list):
-    with open(filename, 'w') as file:
-        json.dump(list, file, indent = 4)   
-    
 
 # Prints the list of items with indexes
 
@@ -31,8 +15,8 @@ def print_list(rows):
 
     def get_rid_of_id(d):
         without_id = d.copy()
-        if 'ID' in without_id:
-            del without_id['ID']
+        if 'id' in without_id:
+            del without_id['id']
         return without_id
 
     if type(first) is dict:
@@ -92,14 +76,26 @@ def get_int_choices(list, message, allow_blank = False):
             print('Please enter a number!')
 
 
+# function to check if imput is safe string
+
+def get_string(message):
+    while True:
+        new_string = input(message)
+        if new_string == '':
+            print('Please enter a value')
+        else:
+            return new_string
+
+
 # Checks if input is a positive float
 
 def get_positive_float(message):
     while True:
         try:
-            num = float(input(message))
+            num = float(input(message)) 
             if num <= 0:
                 print('Please select a positive number')
+            
             else:
                 return num
         except ValueError:
@@ -118,3 +114,23 @@ def get_positive_int_or_zero(message):
                 return num
         except ValueError:
             print('Please write a number')
+
+
+def clear_screen():
+    os.system('clear')
+
+
+def dict_without(dict: Dict, without_keys: List):
+    new_dict = {}
+    for (key, value) in dict.items():
+        if key not in without_keys:
+            new_dict[key] = value
+    return new_dict
+
+
+def list_of_dicts_without(rows: List, without_keys: List):
+    new_list = []
+    for row in rows:
+        new_dict = dict_without(row, without_keys)
+        new_list.append(new_dict)
+    return new_list
