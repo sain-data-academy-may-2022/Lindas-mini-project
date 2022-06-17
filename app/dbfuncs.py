@@ -1,3 +1,5 @@
+from textwrap import indent
+import json
 import pymysql
 import os
 from dotenv import load_dotenv
@@ -136,12 +138,33 @@ class OrderManager:
     def get_all(self):
         with self.connection.cursor(pymysql.cursors.DictCursor) as cursor:
             cursor.execute('''
-                SELECT o.*, c.name, c.address, c.phone, b.name AS courier
+                SELECT o.*, c.name, c.address, c.phone, b.name AS courier, p.name AS product_name
                 FROM `order` o
                 JOIN customer c ON o.customer_id = c.id
-                JOIN courier b ON o.courier_id = b.id''')
-            return cursor.fetchall()
+                JOIN courier b ON o.courier_id = b.id
+                JOIN order_product op ON op.order_id = o.id
+                JOIN product p ON p.id = op.product_id
+                ORDER BY o.id ASC
+            ''')
 
+            orders = {}
+            order_products = {}
+
+            for order in cursor.fetchall():
+                order_id = order['id']
+                product_name = order['product_name']
+
+                if order_id in orders:
+                    order_products[order_id].append(product_name)
+                else:
+                    orders[order_id] = order
+                    order_products[order_id] = [product_name]
+
+            for (order_id, order) in orders.items():
+                del order['product_name']
+                order['products'] = order_products[order_id]
+
+            return list(orders.values())
 
     def update_courier(self, id, courier_id):
        with self.connection.cursor() as cursor:
@@ -188,6 +211,20 @@ class OrderManager:
             self.connection.commit()
 
 
+    def update_products(self, order_id, product_ids):
+        with self.connection.cursor() as cursor:
+            cursor.execute(
+                "DELETE from order_product WHERE order_id = %s",
+                (order_id)
+            )
+            for product_id in product_ids:
+                cursor.execute(
+                    "INSERT INTO order_product (order_id, product_id) VALUES (%s, %s)",
+                    (order_id, product_id)
+                )
+            self.connection.commit()
+
+
     def delete_order(self, order_id, customer_id):
         with self.connection.cursor() as cursor:
             cursor.execute(
@@ -212,6 +249,7 @@ class OrderManager:
                 JOIN customer c ON o.customer_id = c.id
                 JOIN courier b ON o.courier_id = b.id
                 WHERE o.status = %s
+                ORDER BY o.id ASC
                 ''',
                 (status))
             return cursor.fetchall()
@@ -225,6 +263,7 @@ class OrderManager:
                 JOIN customer c ON o.customer_id = c.id
                 JOIN courier b ON o.courier_id = b.id
                 WHERE o.courier_id = %s
+                ORDER BY o.id ASC
                 ''',
                 (courier_id))
             return cursor.fetchall()

@@ -4,6 +4,7 @@ from dbfuncs import CourierManager
 from dbfuncs import ProductManager
 import utilities
 
+
 def view_orders(order_manager: OrderManager):
     orders = order_manager.get_all()
     print_orders(orders)
@@ -27,12 +28,7 @@ def add_order(courier_manager: CourierManager, product_manager: ProductManager, 
     phone = utilities.get_string('Please enter customer phone number: ')
     status = 'PENDING'
     
-    products = product_manager.get_all()
-    product_indexes = utilities.get_int_choices(products, 'Please select products to add to the order separated by commas: ')
-    product_ids = []
-    for product_index in product_indexes:
-        product_id = products[product_index]['id']
-        product_ids.append(product_id)
+    product_ids = get_product_choices(product_manager, 'Please select products to add to the order separated by commas: ', False)
 
     couriers = courier_manager.get_all()
     courier = utilities.get_choice(couriers)
@@ -44,7 +40,7 @@ def add_order(courier_manager: CourierManager, product_manager: ProductManager, 
 
 def order_status(order_manager: OrderManager, statuses):
     orders = order_manager.get_all()
-    order = utilities.get_choice(orders)
+    order = utilities.get_choice(orders, True)
     if not order:
         print('Update cancelled!')
         return
@@ -57,7 +53,7 @@ def order_status(order_manager: OrderManager, statuses):
 
 def update_order(order_manager: OrderManager, product_manager: ProductManager, courier_manager: CourierManager):
     orders = order_manager.get_all()
-    order = utilities.get_choice(orders)
+    order = utilities.get_choice(orders, True)
     if not order:
         print('Update cancelled!')
         return
@@ -75,7 +71,11 @@ def update_order(order_manager: OrderManager, product_manager: ProductManager, c
 
     phone = input('Enter the new phone number: ')
     if phone !='':
-        order_manager.update_customer_phone(customer_id, phone)   
+        order_manager.update_customer_phone(customer_id, phone)
+
+    product_ids = get_product_choices(product_manager, 'Enter new product choices separated by commas: ', True)
+    if product_ids != []:
+        order_manager.update_products(order_id, product_ids)
 
     couriers = courier_manager.get_all()
     courier = utilities.get_choice(couriers, True)
@@ -124,3 +124,12 @@ def sort_order_by_courier(order_manager: OrderManager, courier_manager: CourierM
 # def get_order_choice(orders: List):
 #     orders_without_ids = utilities.list_of_dicts_without(orders, ['courier_id', 'customer_id'])
 #     return utilities.get_choice(orders_without_ids, True)
+
+def get_product_choices(product_manager, message, allow_blank):
+    products = product_manager.get_all()
+    product_indexes = utilities.get_int_choices(products, message, allow_blank)
+    product_ids = []
+    for product_index in product_indexes:
+        product_id = products[product_index]['id']
+        product_ids.append(product_id)
+    return product_ids
