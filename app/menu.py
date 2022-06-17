@@ -49,55 +49,55 @@ def menu(statuses, courier_manager, product_manager, order_manager):
     while True:
         utilities.clear_screen()
         choice = main_menu()
-        if choice == 0:
+        if choice == 'Exit':
             break
-        elif choice == 1:
+        elif choice == 'Products':
             utilities.clear_screen()
             while True:
                 choice = product_menu()
-                if choice == 0:
+                if choice == 'Go back':
                     break
-                elif choice == 1:
+                elif choice == 'View products':
                     list = product_manager.get_all()
                     utilities.print_list(list)
-                elif choice == 2:
+                elif choice == 'Add new product':
                     products.add_item(product_manager)
-                elif choice == 3:
+                elif choice == 'Update product':
                     products.update_item(product_manager)
-                elif choice == 4:
+                elif choice == 'Delete product':
                     products.delete_product(product_manager)
-        elif choice == 2:
+        elif choice == 'Orders':
             utilities.clear_screen()
             while True:
                 choice = order_menu()
-                if choice == 0:
+                if choice == 'Go back':
                     break
-                elif choice == 1:
+                elif choice == 'Show orders':
                     orders.view_orders(order_manager)
-                elif choice == 2:
+                elif choice == 'Add order':
                     orders.add_order(courier_manager, product_manager, order_manager)
-                elif choice == 3:
+                elif choice == 'Update order status':
                     orders.order_status(order_manager, statuses)
-                elif choice == 4:
+                elif choice == 'Update order details':
                     orders.update_order(order_manager, product_manager, courier_manager)
-                elif choice == 5:
+                elif choice == 'Delete order':
                     orders.delete_order(order_manager)
-                elif choice == 6:
+                elif choice == 'Show orders by status':
                     orders.sort_order_by_status(order_manager, statuses)
-                elif choice == 7:
+                elif choice == 'Show orders by courier':
                     orders.sort_order_by_courier(order_manager, courier_manager)
-        elif choice == 3:
+        elif choice == 'Couriers':
             utilities.clear_screen()
             while True:
                 choice = courier_menu()
-                if choice ==0:
+                if choice == 'Go back':
                     break
-                elif choice == 1:
+                elif choice == 'List of couriers':
                     list = courier_manager.get_all()
                     utilities.print_list(list)
-                elif choice == 2:
+                elif choice == 'Add courier':
                     couriers.add_courier(courier_manager)
-                elif choice == 3:
+                elif choice == 'Update courier':
                     couriers.update_courier(courier_manager)
-                elif choice == 4:
+                elif choice == 'Delete courier':
                     couriers.delete_courier(courier_manager)

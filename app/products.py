@@ -9,25 +9,23 @@ import utilities
 def add_item(product_manager: ProductManager):
     print('')
     name = input('Please enter new item: ')
-    if name =='':
+    if name == '':
         print('Add cancelled!')
         return
 
     price = utilities.get_positive_float('Please select price for the new item: ')
-    quantity = input('Please select the amount of items we have: ')
-    product_manager.create(name, price, quantity)
+    product_manager.create(name, price)
 
 
 #  Updating the item from product list
 
 def update_item(product_manager: ProductManager):
     products = product_manager.get_all()
-    product_num = utilities.get_choice(products, True)
-    if product_num == '':
+    product = utilities.get_choice(products, True)
+    if not product:
         print('Update cancelled!')
         return 
 
-    product = products[product_num]
     for (key,value) in product.items():
         if key == "id":
             continue
@@ -36,18 +34,17 @@ def update_item(product_manager: ProductManager):
             if key == 'price':
                 new_value = float(new_value)
             product[key] = new_value
-    product_manager.update(product["id"], product["name"], product["price"], product["quantity"])
+    product_manager.update(product["id"], product["name"], product["price"])
             
         
 #  Deleting item from a list
 
 def delete_product(product_manager: ProductManager):
-    list = product_manager.get_all()
-    num = utilities.get_choice(list, True)
-    if num  == '':
+    products = product_manager.get_all()
+    product = utilities.get_choice(products, True)
+    if not product:
         print('Delete cancelled!')
         return 
 
-    id = list[num]['id']
-    product_manager.delete(id)
+    product_manager.delete(product['id'])
     print('Product deleted!')
