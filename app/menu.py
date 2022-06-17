@@ -48,9 +48,11 @@ def courier_menu():
 def menu(statuses, courier_manager, product_manager, order_manager):
     while True:
         utilities.clear_screen()
+        banner()
         choice = main_menu()
         if choice == 'Exit':
             break
+
         elif choice == 'Products':
             utilities.clear_screen()
             while True:
@@ -66,6 +68,7 @@ def menu(statuses, courier_manager, product_manager, order_manager):
                     products.update_item(product_manager)
                 elif choice == 'Delete product':
                     products.delete_product(product_manager)
+
         elif choice == 'Orders':
             utilities.clear_screen()
             while True:
@@ -86,6 +89,7 @@ def menu(statuses, courier_manager, product_manager, order_manager):
                     orders.sort_order_by_status(order_manager, statuses)
                 elif choice == 'Show orders by courier':
                     orders.sort_order_by_courier(order_manager, courier_manager)
+
         elif choice == 'Couriers':
             utilities.clear_screen()
             while True:
@@ -101,3 +105,13 @@ def menu(statuses, courier_manager, product_manager, order_manager):
                     couriers.update_courier(courier_manager)
                 elif choice == 'Delete courier':
                     couriers.delete_courier(courier_manager)
+
+def banner():
+    print('''
+   ___      _   _            _      _____ _     _      _                  
+  / _ \___ | |_(_) ___  _ __( )__  /__   \ |__ (_)_ __| |_ ___  ___ _ __  
+ / /_)/ _ \| __| |/ _ \| '_ \/ __|   / /\/ '_ \| | '__| __/ _ \/ _ \ '_ \ 
+/ ___/ (_) | |_| | (_) | | | \__ \  / /  | | | | | |  | ||  __/  __/ | | |
+\/    \___/ \__|_|\___/|_| |_|___/  \/   |_| |_|_|_|   \__\___|\___|_| |_|
+                                                                          
+    ''')

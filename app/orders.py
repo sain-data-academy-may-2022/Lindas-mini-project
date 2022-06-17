@@ -1,7 +1,7 @@
 from typing import List
-from dbfuncs import OrderManager
-from dbfuncs import CourierManager
-from dbfuncs import ProductManager
+from order_manager import OrderManager
+from courier_manager import CourierManager
+from product_manager import ProductManager
 import utilities
 
 

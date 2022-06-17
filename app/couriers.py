@@ -1,4 +1,4 @@
-from dbfuncs import CourierManager
+from courier_manager import CourierManager
 import utilities
 
  

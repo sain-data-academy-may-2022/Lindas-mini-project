@@ -1,5 +1,5 @@
 from typing import List
-from dbfuncs import ProductManager
+from product_manager import ProductManager
 import utilities
 
 
