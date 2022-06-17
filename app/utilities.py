@@ -32,18 +32,18 @@ def print_list(rows):
 
 # function to check if imput is safe
 
-def get_choice(list, allow_blank = False):
-    print_list(list)
+def get_choice(items: List, allow_blank = False):
+    print_list(items)
     while True:
         new_choice = input('Please select item: ')
         if allow_blank == True and new_choice == '':
-            return ''
+            return None
         try:
-            which_item = int(new_choice) -1
-            if which_item < 0 or which_item >= len(list):
+            which_item = int(new_choice) - 1
+            if which_item < 0 or which_item >= len(items):
                 print('Please select a valid number')
             else:
-                return which_item
+                return items[which_item]
         except ValueError:
             print('Please write a number')
 

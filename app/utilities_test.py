@@ -27,14 +27,14 @@ def test_print_list_with_items(mock_print: Mock):
 @patch('builtins.input', side_effect = ['3'])
 def test_get_choice(mock_input: Mock):
     value = utilities.get_choice(['banana', 'apple', 'cherry'])
-    assert value == 2
+    assert value == 'cherry'
 
 @patch('builtins.input', side_effect = [''])
 def test_get_choice_with_blank(mock_input: Mock):
     # Assemble
     my_list = ['banana', 'apple', 'cherry']
     allow_blank = True
-    expected = ''
+    expected = None
     # Act
     value = utilities.get_choice(my_list, allow_blank)
     # Assert

@@ -1,5 +1,7 @@
-from dbfuncs import ProductManager, CourierManager, OrderManager, open_connection
-import utilities
+from dbfuncs import open_connection
+from product_manager import ProductManager
+from courier_manager import CourierManager
+from order_manager import OrderManager
 import menu
 
 
@@ -12,15 +14,17 @@ statuses = [
 ]
 
 
+
+
 # Open connection here
 
 connection = open_connection()
 
-product_manager = ProductManager(connection)
-courier_manager = CourierManager(connection)
-order_manager = OrderManager(connection)
+product_man = ProductManager(connection)
+courier_man = CourierManager(connection)
+order_man = OrderManager(connection)
 
-menu.menu(statuses, courier_manager, product_manager, order_manager)
+menu.menu(statuses, courier_man, product_man, order_man)
 
 # Close connection here
 
