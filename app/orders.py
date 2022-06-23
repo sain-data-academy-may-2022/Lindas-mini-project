@@ -121,10 +121,6 @@ def sort_order_by_courier(order_manager: OrderManager, courier_manager: CourierM
     print_orders(orders)
 
 
-# def get_order_choice(orders: List):
-#     orders_without_ids = utilities.list_of_dicts_without(orders, ['courier_id', 'customer_id'])
-#     return utilities.get_choice(orders_without_ids, True)
-
 def get_product_choices(product_manager, message, allow_blank):
     products = product_manager.get_all()
     product_indexes = utilities.get_int_choices(products, message, allow_blank)

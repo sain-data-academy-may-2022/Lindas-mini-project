@@ -29,10 +29,11 @@ def update_item(product_manager: ProductManager):
     for (key,value) in product.items():
         if key == "id":
             continue
-        new_value = input(f'Please write the new {key}: ')
-        if new_value != '':
-            if key == 'price':
-                new_value = float(new_value)
+        if key == 'price':
+            new_value = utilities.get_positive_float(f'Please write the new {key}: ', True)
+        else:
+            new_value = input(f'Please write the new {key}: ')
+        if new_value:
             product[key] = new_value
     product_manager.update(product["id"], product["name"], product["price"])
             

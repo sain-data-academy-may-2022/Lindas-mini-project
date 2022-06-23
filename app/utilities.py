@@ -89,15 +89,18 @@ def get_string(message):
 
 # Checks if input is a positive float
 
-def get_positive_float(message):
+def get_positive_float(message, allow_blank = False):
     while True:
         try:
-            num = float(input(message)) 
-            if num <= 0:
-                print('Please select a positive number')
+            user_input = input(message) 
+            if allow_blank == True and user_input == '':
+                return None
             
+            user_input = float(user_input)
+            if user_input <= 0:
+                print('Please select a positive number')
             else:
-                return num
+                return user_input
         except ValueError:
             print('Please write a number')
 
