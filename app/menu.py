@@ -5,7 +5,7 @@ import utilities
 
 
 def main_menu():  
-    return utilities.get_choice([
+    return utilities.print_list_and_get_choice([
         'Exit',
         'Products',
         'Orders',
@@ -14,7 +14,7 @@ def main_menu():
     
 
 def product_menu():   
-    return utilities.get_choice([
+    return utilities.print_list_and_get_choice([
         'Go back',
         'View products',
         'Add new product',
@@ -24,7 +24,7 @@ def product_menu():
  
 
 def order_menu():
-    return utilities.get_choice([
+    return utilities.print_list_and_get_choice([
         'Go back',
         'Show orders',
         'Add order',
@@ -37,7 +37,7 @@ def order_menu():
 
 
 def courier_menu():
-    return utilities.get_choice([
+    return utilities.print_list_and_get_choice([
         'Go back',
         'List of couriers',
         'Add courier',

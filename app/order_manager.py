@@ -36,10 +36,10 @@ class OrderManager:
             cursor.execute('''
                 SELECT o.*, c.name, c.address, c.phone, b.name AS courier, p.name AS product_name
                 FROM `order` o
-                JOIN customer c ON o.customer_id = c.id
-                JOIN courier b ON o.courier_id = b.id
-                JOIN order_product op ON op.order_id = o.id
-                JOIN product p ON p.id = op.product_id
+                LEFT JOIN customer c ON o.customer_id = c.id
+                LEFT JOIN courier b ON o.courier_id = b.id
+                LEFT JOIN order_product op ON op.order_id = o.id
+                LEFT JOIN product p ON p.id = op.product_id
                 ORDER BY o.id ASC
             ''')
 
@@ -50,11 +50,11 @@ class OrderManager:
                 order_id = order['id']
                 product_name = order['product_name']
 
-                if order_id in orders:
-                    order_products[order_id].append(product_name)
-                else:
+                if order_id not in orders:
                     orders[order_id] = order
-                    order_products[order_id] = [product_name]
+                    order_products[order_id] = []
+
+                order_products[order_id].append(product_name)
 
             for (order_id, order) in orders.items():
                 del order['product_name']

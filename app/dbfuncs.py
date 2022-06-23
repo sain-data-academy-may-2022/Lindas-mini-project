@@ -2,7 +2,6 @@ from textwrap import indent
 import pymysql
 import os
 from dotenv import load_dotenv
-from pyrsistent import s
 
 # Load environment variables from .env file
 
