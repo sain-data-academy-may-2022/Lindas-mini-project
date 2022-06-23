@@ -11,8 +11,7 @@ def view_orders(order_manager: OrderManager):
 
 
 def print_orders(orders: List):
-    orders_without_ids = utilities.list_of_dicts_without(orders, ['courier_id', 'customer_id'])
-    utilities.print_list(orders_without_ids)
+    utilities.print_list(orders, ['id', 'courier_id', 'customer_id'])
 
 
 # Add order to the orders list
@@ -31,7 +30,7 @@ def add_order(courier_manager: CourierManager, product_manager: ProductManager, 
     product_ids = get_product_choices(product_manager, 'Please select products to add to the order separated by commas: ', False)
 
     couriers = courier_manager.get_all()
-    courier = utilities.get_choice(couriers)
+    courier = utilities.print_list_and_get_choice(couriers)
 
     order_manager.create(name, address, phone, status, product_ids, courier['id'])
 
@@ -40,12 +39,13 @@ def add_order(courier_manager: CourierManager, product_manager: ProductManager, 
 
 def order_status(order_manager: OrderManager, statuses):
     orders = order_manager.get_all()
+    print_orders(orders)
     order = utilities.get_choice(orders, True)
     if not order:
         print('Update cancelled!')
         return
     order_id = order['id']
-    status = utilities.get_choice(statuses)
+    status = utilities.print_list_and_get_choice(statuses)
     order_manager.update_order_status(order_id, status)
 
 
@@ -53,6 +53,7 @@ def order_status(order_manager: OrderManager, statuses):
 
 def update_order(order_manager: OrderManager, product_manager: ProductManager, courier_manager: CourierManager):
     orders = order_manager.get_all()
+    print_orders(orders)
     order = utilities.get_choice(orders, True)
     if not order:
         print('Update cancelled!')
@@ -78,7 +79,7 @@ def update_order(order_manager: OrderManager, product_manager: ProductManager, c
         order_manager.update_products(order_id, product_ids)
 
     couriers = courier_manager.get_all()
-    courier = utilities.get_choice(couriers, True)
+    courier = utilities.print_list_and_get_choice(couriers, True)
     if courier:
         order_manager.update_courier(order_id, courier['id'])
 
@@ -87,6 +88,7 @@ def update_order(order_manager: OrderManager, product_manager: ProductManager, c
 
 def delete_order(order_manager: OrderManager):
     orders = order_manager.get_all()
+    print_orders(orders)
     order = utilities.get_choice(orders, True)
     if not order:
         print('Delete cancelled!')
@@ -99,7 +101,7 @@ def delete_order(order_manager: OrderManager):
 # Sorting orders by delivery statuses
 
 def sort_order_by_status(order_manager: OrderManager, statuses):
-    status = utilities.get_choice(statuses, True)
+    status = utilities.print_list_and_get_choice(statuses, True)
     if not status:
         print('Sorting cancelled!')
         return
@@ -112,7 +114,7 @@ def sort_order_by_status(order_manager: OrderManager, statuses):
 
 def sort_order_by_courier(order_manager: OrderManager, courier_manager: CourierManager):
     couriers = courier_manager.get_all()
-    courier = utilities.get_choice(couriers, True)
+    courier = utilities.print_list_and_get_choice(couriers, True)
     if not courier:
         print('Sorting cancelled!')
         return
@@ -123,6 +125,7 @@ def sort_order_by_courier(order_manager: OrderManager, courier_manager: CourierM
 
 def get_product_choices(product_manager, message, allow_blank):
     products = product_manager.get_all()
+    utilities.print_list(products)
     product_indexes = utilities.get_int_choices(products, message, allow_blank)
     product_ids = []
     for product_index in product_indexes:

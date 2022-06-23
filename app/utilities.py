@@ -5,25 +5,18 @@ import os
 
 # Prints the list of items with indexes
 
-def print_list(rows):
+def print_list(rows, without_keys=['id']):
     print('')
     if bool(rows) == False:
         print('No Items!')
         return
     
     first = rows[0]
-
-    def get_rid_of_id(d):
-        without_id = d.copy()
-        if 'id' in without_id:
-            del without_id['id']
-        return without_id
-
     if type(first) is dict:
         x = PrettyTable()
-        x.field_names = ['Num'] + list(get_rid_of_id(first).keys())
+        x.field_names = ['Num'] + list(dict_without(first, without_keys).keys())
         for (i, row) in enumerate(rows, start = 1):
-            x.add_row([i] + list(get_rid_of_id(row).values()))
+            x.add_row([i] + list(dict_without(row, without_keys).values()))
         print(x)
     else:
         for (i, row) in enumerate(rows, start = 1):
@@ -32,8 +25,11 @@ def print_list(rows):
 
 # function to check if imput is safe
 
-def get_choice(items: List, allow_blank = False):
+def print_list_and_get_choice(items: List, allow_blank = False):
     print_list(items)
+    return get_choice(items, allow_blank)
+
+def get_choice(items: List, allow_blank = False):
     while True:
         new_choice = input('Please select item: ')
         if allow_blank == True and new_choice == '':
@@ -51,7 +47,6 @@ def get_choice(items: List, allow_blank = False):
 # Turns choice str into list of ints
 
 def get_int_choices(list, message, allow_blank = False):
-    print_list(list)
     while True:
         try:   
             user_input = input(message).split(',')
@@ -76,13 +71,15 @@ def get_int_choices(list, message, allow_blank = False):
             print('Please enter a number!')
 
 
-# function to check if imput is safe string
+# function to check if input is safe string
 
 def get_string(message):
     while True:
         new_string = input(message)
         if new_string == '':
             print('Please enter a value')
+        elif len(new_string) > 255:
+            print('Its too long!')
         else:
             return new_string
 

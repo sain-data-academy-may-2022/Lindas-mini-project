@@ -21,7 +21,7 @@ def add_item(product_manager: ProductManager):
 
 def update_item(product_manager: ProductManager):
     products = product_manager.get_all()
-    product = utilities.get_choice(products, True)
+    product = utilities.print_list_and_get_choice(products, True)
     if not product:
         print('Update cancelled!')
         return 
@@ -42,7 +42,7 @@ def update_item(product_manager: ProductManager):
 
 def delete_product(product_manager: ProductManager):
     products = product_manager.get_all()
-    product = utilities.get_choice(products, True)
+    product = utilities.print_list_and_get_choice(products, True)
     if not product:
         print('Delete cancelled!')
         return 

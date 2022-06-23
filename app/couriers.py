@@ -19,7 +19,7 @@ def add_courier(courier_manager: CourierManager):
 
 def update_courier(courier_manager: CourierManager):
     couriers = courier_manager.get_all()
-    courier = utilities.get_choice(couriers, True)
+    courier = utilities.print_list_and_get_choice(couriers, True)
     if not courier:
         print('Update cancelled!')
         return 
@@ -37,7 +37,7 @@ def update_courier(courier_manager: CourierManager):
 
 def delete_courier(courier_manager: CourierManager):
     couriers = courier_manager.get_all()
-    courier = utilities.get_choice(couriers, True)
+    courier = utilities.print_list_and_get_choice(couriers, True)
     if not courier:
         print('Delete canceled!')
         return
